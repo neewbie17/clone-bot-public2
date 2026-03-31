@@ -5,7 +5,7 @@ from logging import basicConfig, FileHandler, StreamHandler, INFO, error as log_
 from requests import get as rget
 
 if ospath.exists('log.txt'):
-    with open('log.txt', 'r+') as f:
+    with open('log.txt', 'w+') as f:
         f.truncate(0)
 
 basicConfig(
@@ -63,3 +63,15 @@ if UPSTREAM_REPO is not None:
         log_info('Successfully updated with latest commit from UPSTREAM_REPO')
     else:
         log_error('Something went wrong while updating, check UPSTREAM_REPO if valid or not!')
+        
+
+try:
+    log_info("Running browser test")
+    browser = Playwright()
+    browser.chromium.launch().close()
+    log_info("Browser already installed")
+except:
+    log_info("Downloading browsers")
+    srun(["playwright","install"])
+    log_info("Browsers installed")
+ 

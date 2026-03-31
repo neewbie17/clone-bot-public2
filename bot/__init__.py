@@ -26,6 +26,10 @@ setdefaulttimeout(600)
 
 botStartTime = time()
 
+if ospath.exists('log.txt'):
+    with open('log.txt', 'w+') as f:
+        f.truncate(0)
+
 basicConfig(
     format="%(asctime)s - [%(filename)s:%(lineno)d] - %(levelname)s - %(message)s",
     handlers=[FileHandler("log.txt"), StreamHandler()],
@@ -388,6 +392,21 @@ try:
         raise KeyError
 except:
     GDTOT_CRYPT = None
+
+# try:
+#     GDFLIX_MD = getConfig("GDFLIX_MD")
+#     if len(GDFLIX_MD) == 0:
+#         raise KeyError
+# except:
+#     GDFLIX_MD = None
+
+# try:
+#     GDFLIX_TOKEN = getConfig("GDFLIX_TOKEN")
+#     if len(GDFLIX_TOKEN) == 0:
+#         raise KeyError
+# except:
+#     GDFLIX_TOKEN = None
+
 try:
     HUBDRIVE_CRYPT = getConfig("HUBDRIVE_CRYPT")
     if len(HUBDRIVE_CRYPT) == 0:
